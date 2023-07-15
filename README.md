@@ -38,7 +38,7 @@ curl 'http://localhost:3000/chatgpt' \
 ## image
 
 ```
-curl --location 'http://localhost:3000/images' \
+curl 'http://localhost:3000/images' \
 --header 'Content-Type: application/json' \
 --data '{ "content": "a photo of Shiba Inu eating food" }'
 > 餌を食べている柴犬の写真
