@@ -1,6 +1,6 @@
 #
 
-chatgpt 使ってみる
+chatgpt(gpt-3.5), image(DALL・E) 使ってみる
 
 ```sh
 cp .env.sample .env
@@ -17,7 +17,11 @@ npm i
 
 ```sh
 npm run start:dev
+```
 
+## chat
+
+```
 curl 'http://localhost:3000/chatgpt' \
 --header 'Content-Type: application/json' \
 --data '{ "message": "お前のこと誰が好きなん？" }'
@@ -30,3 +34,27 @@ curl 'http://localhost:3000/chatgpt' \
 >   }
 > ]
 ```
+
+## image
+
+```
+curl --location 'http://localhost:3000/images' \
+--header 'Content-Type: application/json' \
+--data '{ "content": "a photo of Shiba Inu eating food" }'
+> 餌を食べている柴犬の写真
+> 日本語が弱いっぽいので英語で
+
+> {
+>   created: xxxxxxxx,
+>   data: [
+>     {
+>       url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/xxxxxxxxxxxxxxx'
+>     },
+>     {
+>       url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/xxxxxxxxxxxxxxx'
+>     }
+>   ]
+> }
+```
+
+![image](public/images.png)
