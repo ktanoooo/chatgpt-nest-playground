@@ -1,22 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Configuration, OpenAIApi } from 'openai';
+import OpenAI from 'openai';
 
 @Injectable()
 export class ImagesService {
-  private openai: OpenAIApi;
+  private openai: OpenAI;
 
   constructor(private readonly configService: ConfigService) {
-    const configuration = new Configuration({
+    this.openai = new OpenAI({
       apiKey: this.configService.get<string>('OPENAI_API_KEY'),
     });
-    this.openai = new OpenAIApi(configuration);
   }
 
   async createImage({ content }: { content: string }) {
     try {
       console.log(content);
-      const completion = await this.openai.createImage({
+      const completion = await this.openai.images.generate({
         prompt: content,
         n: 2,
         size: '1024x1024',
